@@ -1,7 +1,7 @@
 # Projeto_Liceu
 
-Criador: Francisco Robson de O. Dutra
-Instagram: @robsondutra_
+<br>Criador: Francisco Robson de O. Dutra
+<br>Instagram: @robsondutra_
 
 Esse projeto tem como principal função ajudar os professores da minha escola a serem mais produtivos. Nesse projeto, eu adicionei funções tais como:
    > cadastro e login dos alunos;
