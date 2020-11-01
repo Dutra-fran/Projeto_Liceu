@@ -16,6 +16,5 @@ Esse projeto tem como principal função ajudar os professores da minha escola a
    <li>o professor poderá visualizar a nota que os alunos obtiveram em sua disciplina;</li>
    <li>além de outras mecânicas.</li>
 </ul>
---------------------
-
+<hr></hr>
 Veja o arquivo database.txt para que você possa implementar o banco de dados e, assim, poder testar o projeto com êxito.
