@@ -32,20 +32,21 @@
               $result1 = mysqli_query($conn, $query1);
               $disciplina = mysqli_fetch_array($result1);
             }
-            
+
+            echo "<table border='1'>";
+            echo "<caption>Alunos que responderam a sua prova</caption>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th>Aluno</th>";
+            echo "<th>Sala</th>";
+            echo "<th>Nota</th>";
+            echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
+
             while($dados = mysqli_fetch_array($result)){
               $query2 = "SELECT Cadastro.Nome AS Nome, Salas.Sala AS Sala, Notas.Notas AS Notas FROM Verifica_Prova INNER JOIN Cadastro ON Cadastro.ID = Verifica_Prova.ID_Cadastro INNER JOIN Notas ON Notas.ID_Cadastro = Cadastro.ID INNER JOIN Salas ON Salas.ID_Sala = Cadastro.ID_Sala WHERE Verifica_Prova.ID_Sala = '".$dados['ID_Sala']."' AND Verifica_Prova.Disciplina = '".$disciplina['Disciplina']."'";
               $result2 = mysqli_query($conn, $query2);
-              echo "<table border='1'>";
-              echo "<caption>Alunos que responderam a sua prova</caption>";
-              echo "<thead>";
-              echo "<tr>";
-              echo "<th>Aluno</th>";
-              echo "<th>Sala</th>";
-              echo "<th>Nota</th>";
-              echo "</tr>";
-              echo "</thead>";
-              echo "<tbody>";
               while($dados2 = mysqli_fetch_array($result2)){
                 echo "<tr>";
                 echo "<td>".$dados2['Nome']."</td>";
@@ -53,9 +54,10 @@
                 echo "<td>".$dados2['Notas']."</td>";
                 echo "</tr>";
               }
-              echo "</tbody>";
-              echo "</table>";
             }
+
+            echo "</tbody>";
+            echo "</table>";
         ?>
         <a href="../../painel.php">Voltar</a>
     </body>
