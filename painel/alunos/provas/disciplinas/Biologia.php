@@ -3,7 +3,7 @@
     <head>
         <title>Biologia</title>
         <meta charset="UTF-8" />
-        <META HTTP-EQUIV="REFRESH" CONTENT="1800;URL=http://localhost:8080/painel/alunos/provas/provas.php">
+        <META HTTP-EQUIV="REFRESH" CONTENT="1800;URL=http://192.168.1.50:8080/painel/alunos/provas/provas.php">
     </head>
     <body>
         <h1>Biologia</h1>
