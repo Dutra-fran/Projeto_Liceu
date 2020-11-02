@@ -2,7 +2,9 @@
 
 Criador: Francisco Robson de O. Dutra
 <br>Instagram: @robsondutra_
+<br>
 
+<h2>Sobre</h2>
 Esse projeto tem como principal função ajudar os professores da minha escola a serem mais produtivos. Nesse projeto, eu adicionei funções tais como:
 <ul>
    <li>Cadastro e login dos alunos;</li>
