@@ -8,19 +8,19 @@
       exit();
     }
 
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $senha = mysqli_real_escape_string($conn, $_POST['senha']);
-    $materia = mysqli_real_escape_string($conn, $_POST['materia']);
-    $sala = mysqli_real_escape_string($conn, $_POST['sala']);
+    $Nome = mysqli_real_escape_string($conn, $_POST['nome']);
+    $Email = mysqli_real_escape_string($conn, $_POST['email']);
+    $Senha = mysqli_real_escape_string($conn, $_POST['senha']);
+    $Materia = mysqli_real_escape_string($conn, $_POST['materia']);
+    $Sala = mysqli_real_escape_string($conn, $_POST['sala']);
 
-    if($materia == 1){
-      $insercao = "INSERT INTO Cadastro (Nome, ID_Sala, ID_Exatas, Email, Senha) VALUES ('".$nome."', '".$sala."', '".$materia."', '".$email."', md5('".$senha."'))";
+    if($Materia == 1){
+      $insercao = "INSERT INTO Cadastro (Nome, ID_Sala, ID_Exatas, Email, Senha) VALUES ('".$Nome."', '".$Sala."', '".$Materia."', '".$Email."', md5('".$Senha."'))";
       $insercao_dados = mysqli_query($conn, $insercao);
     }
 
-    if($materia == 2){
-      $insercao = "INSERT INTO Cadastro (Nome, ID_Sala, ID_Humanas, Email, Senha) VALUES ('".$nome."', '".$sala."', '".$materia."', '".$email."', md5('".$senha."'))";
+    if($Materia == 2){
+      $insercao = "INSERT INTO Cadastro (Nome, ID_Sala, ID_Humanas, Email, Senha) VALUES ('".$Nome."', '".$Sala."', '".$Materia."', '".$Email."', md5('".$Senha."'))";
       $insercao_dados = mysqli_query($conn, $insercao);
     }
     
