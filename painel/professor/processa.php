@@ -2,7 +2,7 @@
     include_once('./verifica_login.php');
     include_once('../../conexao.php');
     
-    if(!isset($_SESSION['professor'])){
+    if(!isset($_SESSION['acesso'])){
       $_SESSION['mensagem_professor'] = "Só professores têm acesso à esta página.";
       header('Location: ../painel.php');
       exit();
@@ -14,11 +14,9 @@
        exit();
     }
 
-    $_SESSION['cont'] = 1;
-    
-    $_SESSION['cont'] += $_POST['contagem'];
-
-    $_SESSION['conta'] = $_SESSION['cont'];
+    $_SESSION['contagem'] = 1;
+    $_SESSION['contagem'] += $_POST['contagem'];
+    $_SESSION['questoes'] = $_SESSION['contagem'];
     header('Location: ./prova.php');
     exit();
 ?>
