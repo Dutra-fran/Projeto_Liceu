@@ -35,9 +35,9 @@
               while($dados_Comentarios = mysqli_fetch_array($Comentario_result)){
                 if($dados_Comentarios['Nome'] == $_SESSION['usuario']){
                   echo "<p>".$dados_Comentarios['Nome']." | ".$dados_Comentarios['Data']."<br>Comentário: ".$dados_Comentarios['Comentario']."<br>"
-                  ."<a href='./comentario/deletar_comment.php?ID=".$comment['ID']."'>Apagar</a></p>";
+                  ."<a href='./comentario/deletar_comment.php?ID=".$dados_Comentarios['ID']."'>Apagar</a></p>";
                 } else {
-                  echo "<p>".$dados_Comentarios'Nome']." | ".$dados_Comentarios['Data']."<br>Comentário: ".$dados_Comentarios['Comentario']."</p><br>";
+                  echo "<p>".$dados_Comentarios['Nome']." | ".$dados_Comentarios['Data']."<br>Comentário: ".$dados_Comentarios['Comentario']."</p><br>";
                 }
                 echo "<br><br><br>";
               }
