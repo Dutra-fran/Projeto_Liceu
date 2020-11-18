@@ -2,10 +2,10 @@
     include_once('../../../../conexao.php');
     include_once('./verifica_login.php');
     
-    $query = "DELETE FROM FeedBack WHERE ID_Comentario = ".$_GET['ID'];
-    $result = mysqli_query($conn, $query);
+    $Apagar_Comentario_query = "DELETE FROM FeedBack WHERE ID_Comentario = ".$_GET['ID'];
+    $Apagar_Comentario_result = mysqli_query($conn, $Apagar_Comentario_query);
     
-    if(!$result){
+    if(!$Apagar_Comentario_result){
       $_SESSION['comentario'] = "Exclusão do comentário mal sucedida!";
       header('Location: ../feedback.php');
       exit();
