@@ -61,7 +61,6 @@
         <br><br><br><br>
         <?php
             session_start();
-            include_once('../../conexao.php');
             
             if(!isset($_SESSION['acesso'])){
               $_SESSION['mensagem_professor'] = "Você não tem autorização para acessar a página solicitada.";
