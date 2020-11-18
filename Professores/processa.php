@@ -8,13 +8,13 @@
       exit();
     }
     
-    $senha = mysqli_real_escape_string($conn, $_POST['senha']);
+    $Senha = mysqli_real_escape_string($conn, $_POST['senha']);
     
-    $query = "SELECT * FROM Acesso WHERE Senha = md5('".$senha."')";
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_num_rows($result);
+    $Acesso_query = "SELECT * FROM Acesso WHERE Senha = md5('".$Senha."')";
+    $Acesso_result = mysqli_query($conn, $Acesso_query);
+    $Acesso_row = mysqli_num_rows($Acesso_result);
 
-    if($row == 1){
+    if($Acesso_row == 1){
       $_SESSION['acesso'] = "Permitido";
       header('Location: ./login/login.php');
       exit();
