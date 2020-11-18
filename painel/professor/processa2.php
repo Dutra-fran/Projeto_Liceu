@@ -43,10 +43,10 @@
               }
             }
             if($Humanas_row == 1){
-              foreach($sala as $key => $salaa){
-                $insercao_Questao_query = "INSERT INTO ".$dados1['Disciplina']." (Questao, item1, item2, item3, item4, item5, ID_Sala) VALUES ('".$Questao."', '".$itemA."', '".$itemB."', '".$itemC."', '".$itemD."', '".$itemE."', '".$Sala."')";
+              foreach($Salas as $key => $Sala){
+                $insercao_Questao_query = "INSERT INTO ".$dados_Humanas['Disciplina']." (Questao, item1, item2, item3, item4, item5, ID_Sala) VALUES ('".$Questao."', '".$itemA."', '".$itemB."', '".$itemC."', '".$itemD."', '".$itemE."', '".$Sala."')";
                 $insercao_Questao_result = mysqli_query($conn, $insercao_Questao_query);
-                if(!$insercao_Questao_query){
+                if(!$insercao_Questao_result){
                   $_SESSION['mensagem_professor'] = "Erro ao adicionar a questão no banco de dados. Por favor, tente novamente.";
                   header('Location: ./prova.php');
                   exit();
