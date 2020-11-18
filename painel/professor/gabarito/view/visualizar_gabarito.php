@@ -10,29 +10,29 @@
             include_once('../../../../conexao.php');
             include_once('./verifica_login.php');
             
-            $query = "SELECT * FROM Salas_Prof WHERE ID_Professor = '".$_SESSION['id']."'";
-            $result = mysqli_query($conn, $query);
+            $Salas_Prof_query = "SELECT * FROM Salas_Prof WHERE ID_Professor = '".$_SESSION['id']."'";
+            $Salas_Prof_result = mysqli_query($conn, $Salas_Prof_query);
             
-            while($dados = mysqli_fetch_array($result)){
-              $query1 = "SELECT * FROM Salas WHERE ID_Sala = '".$dados['ID_Sala']."'";
-              $result1 = mysqli_query($conn, $query1);
-              $nome_sala = mysqli_fetch_array($result1);
+            while($dados_Salas_Prof = mysqli_fetch_array($Salas_Prof_result)){
+              $Nome_Sala_query = "SELECT * FROM Salas WHERE ID_Sala = '".$dados_Salas_Prof['ID_Sala']."'";
+              $Nome_Sala_result = mysqli_query($conn, $Nome_Sala_query);
+              $Nome_Sala = mysqli_fetch_array($Nome_Sala_result);
 
-              $query2 = "SELECT * FROM Gabarito WHERE ID_Sala = '".$dados['ID_Sala']."' AND Disciplina = '".$_GET['Disciplina']."' ORDER BY ID ASC";
-              $result2 = mysqli_query($conn, $query2);
-              $row2 = mysqli_num_rows($result2);
+              $Gabarito_query = "SELECT * FROM Gabarito WHERE ID_Sala = '".$dados_Salas_Prof['ID_Sala']."' AND Disciplina = '".$_GET['Disciplina']."' ORDER BY ID ASC";
+              $Gabarito_result = mysqli_query($conn, $Gabarito_query);
+              $Gabarito_row = mysqli_num_rows($Gabarito_result);
 
-              if($row2 !== 0){
-                echo "<h2>Sala: ".$nome_sala['Sala']."</h2>";
+              if($Gabarito_row !== 0){
+                echo "<h2>Sala: ".$Nome_Sala['Sala']."</h2>";
                 $i = 1;
-                while($dados2 = mysqli_fetch_array($result2)){
-                  echo $i.") ". $dados2['Questao'] ."<br>";
+                while($dados_Gabarito = mysqli_fetch_array($Gabarito_result)){
+                  echo $i.") ". $dados_Gabarito['Questao'] ."<br>";
                   $i++;
                 }
-                echo "<a href='./processa.php?ID_Sala=".$dados['ID_Sala']."&Disciplina=".$_GET['Disciplina']."'>Apagar</a>";
+                echo "<a href='./processa.php?ID_Sala=".$dados_Salas_Prof['ID_Sala']."&Disciplina=".$_GET['Disciplina']."'>Apagar</a>";
                 echo "<br><br>";
               } else {
-                echo "<h2>A prova de ".$_GET['Disciplina']." da sala ".$nome_sala['Sala']." ainda está sem gabarito!</h2>";
+                echo "<h2>A prova de ".$_GET['Disciplina']." da sala ".$Nome_Sala['Sala']." ainda está sem gabarito!</h2>";
               }
             }
 
