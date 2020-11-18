@@ -31,14 +31,14 @@
       header('Location: ./registro.php');
     }
 
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $senha = mysqli_real_escape_string($conn, $_POST['senha']);
-    $materia = mysqli_real_escape_string($conn, $_POST['materia']);
-    $sala = $_POST['sala'];
+    $Nome = mysqli_real_escape_string($conn, $_POST['nome']);
+    $Email = mysqli_real_escape_string($conn, $_POST['email']);
+    $Senha = mysqli_real_escape_string($conn, $_POST['senha']);
+    $Materia = mysqli_real_escape_string($conn, $_POST['materia']);
+    $Salas = $_POST['sala'];
 
-    if($materia == 'exatas'){
-      echo "<h1>Olá, ".$nome.". Você é professor de exatas!</h1>";
+    if($Materia == 'exatas'){
+      echo "<h1>Olá, ".$Nome.". Você é professor de exatas!</h1>";
       echo "<p>Selecione abaixo a matéria que você ensina.</p>";
       echo "<form name='disciplina' action='processa2.php' method='POST' accept-charset='UTF-8'>";
       echo "<label><input type='radio' name='disciplina' value='Matematica' checked>Matemática</label><br>";
@@ -50,8 +50,8 @@
       echo "</form>";
     }
 
-    if($materia == 'humanas'){
-      echo "<h1>Olá, ".$nome.". Você é professor de Humanas!</h1>";
+    if($Materia == 'humanas'){
+      echo "<h1>Olá, ".$Nome.". Você é professor de Humanas!</h1>";
       echo "<p>Selecione abaixo a matéria que você ensina.</p>";
       echo "<form name='disciplina' action='processa2.php' method='POST' accept-charset='UTF-8'>";
       echo "<label><input type='radio' name='disciplina' value='Portugues' checked>Português</label><br>";
@@ -64,13 +64,10 @@
       echo "</form>";
     }
 
-    $_SESSION['nome'] = $nome;
-    $_SESSION['email'] = $email;
-    $_SESSION['senha'] = $senha;
-    $_SESSION['materia'] = $materia;
-    $_SESSION['sala'] = $sala;
+    $_SESSION['nome'] = $Nome;
+    $_SESSION['email'] = $Email;
+    $_SESSION['senha'] = $Senha;
+    $_SESSION['materia'] = $Materia;
+    $_SESSION['sala'] = $Salas;
 
-    /* foreach($sala as $key => $salaa){
-      echo "$salaa";
-    } */
 ?>
