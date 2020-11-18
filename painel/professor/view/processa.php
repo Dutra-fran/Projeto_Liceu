@@ -2,32 +2,33 @@
     include_once('./verifica_login.php');
     include_once('../../../conexao.php');
     
-    if(!isset($_SESSION['professor'])){
-      $_SESSION['mensagem_admin'] = "Só professores têm acesso à esta página.";
+    if(!isset($_SESSION['acesso'])){
+      $_SESSION['mensagem'] = "Só professores têm acesso à esta página.";
       header('Location: ../../painel.php');
       exit();
     }
-    $busca = "SELECT * FROM Exatas WHERE ID_Professor = '".$_SESSION['id']."'";
-    $resultado = mysqli_query($conn, $busca);
-    $row = mysqli_num_rows($resultado);
-    $dados = mysqli_fetch_array($resultado);
 
-    $busca1 = "SELECT * FROM Humanas WHERE ID_Professor = '".$_SESSION['id']."'";
-    $resultado1 = mysqli_query($conn, $busca1);
-    $row1 = mysqli_num_rows($resultado1);
-    $dados1 = mysqli_fetch_array($resultado1);
+    $Exatas_query = "SELECT * FROM Exatas WHERE ID_Professor = '".$_SESSION['id']."'";
+    $Exatas_result = mysqli_query($conn, $Exatas_query);
+    $Exatas_row = mysqli_num_rows($Exatas_result);
+    $dados_Exatas = mysqli_fetch_array($Exatas_result);
 
-    if($row == 1){
-      $busca3 = "DELETE FROM ".$dados['Disciplina']." WHERE ID_Sala = '".$_GET['ID_Sala']."'";
-      $resultado3 = mysqli_query($conn, $busca3);
+    $Humanas_query = "SELECT * FROM Humanas WHERE ID_Professor = '".$_SESSION['id']."'";
+    $Humanas_result = mysqli_query($conn, $Humanas_query);
+    $Humanas_row = mysqli_num_rows($Humanas_result);
+    $dados_Humanas = mysqli_fetch_array($Humanas_result);
+
+    if($Exatas_row == 1){
+      $Apagar_query = "DELETE FROM ".$dados_Exatas['Disciplina']." WHERE ID_Sala = '".$_GET['ID_Sala']."'";
+      $Apagar_result = mysqli_query($conn, $Apagar_query);
     }
 
-    if($row1 == 1){
-      $busca3 = "DELETE FROM ".$dados1['Disciplina']." WHERE ID_Sala = '".$_GET['ID_Sala']."'";
-      $resultado3 = mysqli_query($conn, $busca3);
+    if($Humanas_row == 1){
+      $Apagar_query = "DELETE FROM ".$dados_Humanas['Disciplina']." WHERE ID_Sala = '".$_GET['ID_Sala']."'";
+      $Apagar_result = mysqli_query($conn, $Apagar_query);
     }
 
-    if(!$resultado3){
+    if(!$Apagar_result){
       $_SESSION['mensagem_professor'] = "Erro ao apagar a prova no banco de dados. Por favor, tente novamente.";
       header('Location: ./prova.php');
       exit();
