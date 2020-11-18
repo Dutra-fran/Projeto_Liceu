@@ -23,9 +23,9 @@
     $Login_dados = mysqli_fetch_array($Login_result);
 
     if($Login_row == 1){
-      $_SESSION['usuario'] = $dados['Nome'];
-      $_SESSION['id'] = $dados['ID_Professor'];
-      $_SESSION['senha'] = $senha;
+      $_SESSION['usuario'] = $Login_dados['Nome'];
+      $_SESSION['id'] = $Login_dados['ID_Professor'];
+      $_SESSION['senha'] = $Senha;
       header('Location: ../../painel/painel.php');
       exit();
     } else {
