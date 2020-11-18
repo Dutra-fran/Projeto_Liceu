@@ -31,35 +31,36 @@
       header('Location: ./registro.php');
     }
 
-    $disciplina = mysqli_real_escape_string($conn, $_POST['disciplina']);
-    $nome = $_SESSION['nome'];
-    $email = $_SESSION['email'];
-    $senha = $_SESSION['senha'];
-    $materia = $_SESSION['materia'];
-    $sala = $_SESSION['sala'];
+    $Disciplina = mysqli_real_escape_string($conn, $_POST['disciplina']);
+    $Nome = $_SESSION['nome'];
+    $Email = $_SESSION['email'];
+    $Senha = $_SESSION['senha'];
+    $Materia = $_SESSION['materia'];
+    $Salas = $_SESSION['sala'];
 
-    $query = "INSERT INTO Professores (Nome, Email, Senha) VALUES ('".$nome."', '".$email."', md5('".$senha."'))";
-    $result = mysqli_query($conn, $query);
-    $query2 = "SELECT ID_Professor FROM Professores WHERE Email = '".$email."' AND Senha = md5('".$senha."')";
-    $result2 = mysqli_query($conn, $query2);
-    $dado = mysqli_fetch_array($result2);
-    $id = $dado['ID_Professor'];
+    $insercao = "INSERT INTO Professores (Nome, Email, Senha) VALUES ('".$Nome."', '".$Email."', md5('".$Senha."'))";
+    $insercao_dados = mysqli_query($conn, $insercao);
+    $Query_prof = "SELECT ID_Professor FROM Professores WHERE Email = '".$Email."' AND Senha = md5('".$Senha."')";
+    $Prof_result = mysqli_query($conn, $Query_prof);
+    $Dados_prof = mysqli_fetch_array($Dados_prof);
+    $id = $Dados_prof['ID_Professor'];
 
-    if($materia == 'exatas'){
-       $query3 = "INSERT INTO Exatas (ID_Professor, Disciplina) VALUES ('".$id."', '".$disciplina."')";
-       $result3 = mysqli_query($conn, $query3);
+    if($Materia == 'exatas'){
+       $insercao_Materia = "INSERT INTO Exatas (ID_Professor, Disciplina) VALUES ('".$id."', '".$Disciplina."')";
+       $Materia_result = mysqli_query($conn, $insercao_Materia);
     }
 
-    if($materia == 'humanas'){
-       $query3 = "INSERT INTO Humanas (ID_Professor, Disciplina) VALUES ('".$id."', '".$disciplina."')";
-       $result3 = mysqli_query($conn, $query3);
+    if($Materia == 'humanas'){
+       $insercao_Materia = "INSERT INTO Humanas (ID_Professor, Disciplina) VALUES ('".$id."', '".$Disciplina."')";
+       $Materia_result = mysqli_query($conn, $insercao_Materia);
     }
-    foreach($sala as $key => $salaa){
-      $query4 = "SELECT * FROM Salas WHERE Sala = '".$salaa."'";
-      $result4 = mysqli_query($conn, $query4);
-      $dados = mysqli_fetch_array($result4);
-      $query5 = "INSERT INTO Salas_Prof (ID_Sala, ID_Professor) VALUES ('".$dados['ID_Sala']."', '".$id."')";
-      $result5 = mysqli_query($conn, $query5);
+
+    foreach($Salas as $key => $Sala){
+      $Sala_query = "SELECT * FROM Salas WHERE Sala = '".$Sala."'";
+      $Sala_result = mysqli_query($conn, $Sala_query);
+      $dados_Sala = mysqli_fetch_array($Sala_result);
+      $Prof_Sala_insercao = "INSERT INTO Salas_Prof (ID_Sala, ID_Professor) VALUES ('".$dados_Sala['ID_Sala']."', '".$id."')";
+      $Prof_Sala_result = mysqli_query($conn, $Prof_Sala_insercao);
     }
 
     unset($_SESSION['nome']);
@@ -68,7 +69,7 @@
     unset($_SESSION['materia']);
     unset($_SESSION['sala']);
 
-    if(($result === TRUE && $result3 === TRUE) && $result5 === TRUE){
+    if(($insercao_dados === TRUE && $Materia_result === TRUE) && $Prof_Sala_result === TRUE){
       $_SESSION['mensagem_professor'] = "Cadastro concluído com sucesso!";
       header('Location: ./registro.php');
       exit();
