@@ -10,8 +10,8 @@
             include_once('./verifica_login.php');
             include_once('../../../conexao.php');
             
-            $query = "SELECT * FROM Cadastro GROUP BY ID_Sala";
-            $result = mysqli_query($conn, $query);
+            $Alunos_query = "SELECT * FROM Cadastro GROUP BY ID_Sala";
+            $Alunos_result = mysqli_query($conn, $Alunos_query);
             echo "<table border='1'>";
             
             echo "<caption>Alunos</caption>";
@@ -23,13 +23,13 @@
             echo "</thead>";
             echo "<tbody>";
             
-            while($dados = mysqli_fetch_array($result)){
-              $query2 = "SELECT * FROM Salas WHERE ID_Sala = '".$dados['ID_Sala']."'";
-              $result2 = mysqli_query($conn, $query2);
-              $dados2 = mysqli_fetch_array($result2);
+            while($dados_Alunos = mysqli_fetch_array($Alunos_result)){
+              $Nome_Sala_query = "SELECT * FROM Salas WHERE ID_Sala = '".$dados_Alunos['ID_Sala']."'";
+              $Nome_Sala_result = mysqli_query($conn, $Nome_Sala_query);
+              $Nome_Sala = mysqli_fetch_array($Nome_Sala_result);
               echo "<tr>";
-              echo "<td>".$dados['Nome']."</td>";
-              echo "<td>".$dados2['Sala']."</td>";
+              echo "<td>".$dados_Alunos['Nome']."</td>";
+              echo "<td>".$Nome_Sala['Sala']."</td>";
               echo "</tr>";
             }
 
