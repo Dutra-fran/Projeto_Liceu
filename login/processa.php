@@ -15,7 +15,7 @@
     $Login_result = mysqli_query($conn, $query_Login);
     $dados_Login = mysqli_fetch_array($Login_result);
   
-    $row_Login = mysqli_num_rows($result);
+    $row_Login = mysqli_num_rows($Login_result);
   
     if($row_Login == 1){
       $_SESSION['usuario'] = $dados_Login['Nome'];
