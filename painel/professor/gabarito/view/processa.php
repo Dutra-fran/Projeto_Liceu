@@ -3,9 +3,9 @@
     include_once('./verifica_login.php');
     
     if(isset($_GET['Disciplina']) && isset($_GET['ID_Sala'])){
-      $query = "DELETE FROM Gabarito WHERE ID_Sala = '".$_GET['ID_Sala']."' AND Disciplina = '".$_GET['Disciplina']."'";
-      $result = mysqli_query($conn, $query);
-      if(!$result){
+      $Apagar_Gabarito_query = "DELETE FROM Gabarito WHERE ID_Sala = '".$_GET['ID_Sala']."' AND Disciplina = '".$_GET['Disciplina']."'";
+      $Apagar_Gabarito_result = mysqli_query($conn, $Apagar_Gabarito_query);
+      if(!$Apagar_Gabarito_result){
         $_SESSION['mensagem'] = "Erro ao apagar o gabarito! Por favor, tente novamente.";
         header("Location: ./visualizar_gabarito.php?Disciplina=".$_GET['Disciplina']);
         exit();
