@@ -3,20 +3,20 @@
     include_once('./verifica_login.php');
     
     date_default_timezone_set('America/Fortaleza');
-    $date = date("d/m/Y H:i:s");
+    $data = date("d/m/Y H:i:s");
 
-    $query = "SELECT * FROM Cadastro WHERE ID = '".$_SESSION['id']."'";
-    $result_query = mysqli_query($conn, $query);
-    $dados = mysqli_fetch_array($result_query);
+    $Dados_Aluno_query = "SELECT * FROM Cadastro WHERE ID = '".$_SESSION['id']."'";
+    $Dados_Aluno_result = mysqli_query($conn, $Dados_Aluno_query);
+    $dados_Aluno = mysqli_fetch_array($Dados_Aluno_result);
 
     $comentario = mysqli_real_escape_string($conn, $_POST['comentario']);
     $comentario_seguro = htmlspecialchars($comentario, ENT_QUOTES);
 
     if($comentario != ""){
-      $insert = "INSERT INTO FeedBack (ID_Cadastro, Comentario, Data, ID_Sala) VALUES ('".$_SESSION['id']."', '".$comentario_seguro."', '".$date."', '".$dados['ID_Sala']."')";
-      $result = mysqli_query($conn, $insert);
+      $Comentario_insercao = "INSERT INTO FeedBack (ID_Cadastro, Comentario, Data, ID_Sala) VALUES ('".$_SESSION['id']."', '".$comentario_seguro."', '".$data."', '".$dados_Aluno['ID_Sala']."')";
+      $Comentario_result = mysqli_query($conn, $Comentario_insercao);
 
-      if(!$result){
+      if(!$Comentario_result){
         $_SESSION['comentario'] = "Erro ao inserir o comentário na base de dados!";
         header('Location: ../feedback.php');
         exit();
