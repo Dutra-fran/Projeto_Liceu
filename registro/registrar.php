@@ -61,7 +61,6 @@
         <br><br><br><br>
         <?php
             session_start();
-            include_once('../../conexao.php');
             
             if(isset($_SESSION['mensagem_registro'])){
               echo "<h3>".$_SESSION['mensagem_registro']."</h3>";
