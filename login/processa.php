@@ -11,17 +11,16 @@
   $Email = mysqli_real_escape_string($conn, $_POST['email']);
   $Senha = mysqli_real_escape_string($conn, $_POST['senha']);
   
-  $query = "SELECT * FROM Cadastro WHERE Email = '".$Email."' AND Senha = md5('".$Senha."')";
-  $result = mysqli_query($conn, $query);
-  $dados = mysqli_fetch_array($result);
-  $id = $dados['ID'];
+  $query_Login = "SELECT * FROM Cadastro WHERE Email = '".$Email."' AND Senha = md5('".$Senha."')";
+  $Login_result = mysqli_query($conn, $query_Login);
+  $dados_Login = mysqli_fetch_array($Login_result);
   
-  $row = mysqli_num_rows($result);
+  $row_Login = mysqli_num_rows($result);
   
-  if($row == 1){
-    $_SESSION['usuario'] = $dados['Nome'];
-    $_SESSION['id'] = $id;
-    $_SESSION['senha'] = $dados['Senha'];
+  if($row_Login == 1){
+    $_SESSION['usuario'] = $dados_Login['Nome'];
+    $_SESSION['id'] = $dados_Login['ID'];
+    $_SESSION['senha'] = $dados_Login['Senha'];
     $_SESSION['aluno'] = "TRUE";
     header('Location: ../painel/painel.php');
     exit();
