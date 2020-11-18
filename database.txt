@@ -66,7 +66,7 @@ FOREIGN KEY(ID_Professor) REFERENCES Professores(ID_Professor)
 );
 
 CREATE TABLE Humanas (
-ID_Humanas SMALLINT PRIMARY DEFAULT '2',
+ID_Humanas SMALLINT PRIMARY KEY DEFAULT '2',
 ID_Professor SMALLINT NOT NULL,
 Disciplina VARCHAR(50) NOT NULL,
 FOREIGN KEY(ID_Professor) REFERENCES Professores(ID_Professor)
@@ -96,7 +96,7 @@ ID_Cadastro INT NOT NULL,
 Questao CHAR(1) NOT NULL,
 Disciplina VARCHAR(50) NOT NULL,
 FOREIGN KEY(ID_Sala) REFERENCES Salas(ID_Sala),
-FOREING KEY(ID_Cadastro) REFERENCES Cadastro(ID)
+FOREIGN KEY(ID_Cadastro) REFERENCES Cadastro(ID)
 );
 
 CREATE TABLE Gabarito (
