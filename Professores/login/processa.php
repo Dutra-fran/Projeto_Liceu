@@ -25,7 +25,7 @@
     if($Login_row == 1){
       $_SESSION['usuario'] = $Login_dados['Nome'];
       $_SESSION['id'] = $Login_dados['ID_Professor'];
-      $_SESSION['senha'] = $Senha;
+      $_SESSION['senha'] = $Login_dados['Senha'];
       header('Location: ../../painel/painel.php');
       exit();
     } else {
