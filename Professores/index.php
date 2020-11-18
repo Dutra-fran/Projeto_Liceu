@@ -16,7 +16,6 @@
         
         <?php
             session_start();
-            include_once('../conexao.php');
             
             if(isset($_SESSION['mensagem_professor'])){
               echo "<h2>".$_SESSION['mensagem_professor']."</h2>";
