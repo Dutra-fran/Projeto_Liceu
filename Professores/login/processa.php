@@ -14,18 +14,17 @@
       exit();
     }
 
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $senha = mysqli_real_escape_string($conn, $_POST['senha']);
+    $Email = mysqli_real_escape_string($conn, $_POST['email']);
+    $Senha = mysqli_real_escape_string($conn, $_POST['senha']);
 
-    $query = "SELECT * FROM Professores WHERE Email = '".$email."' AND Senha = md5('".$senha."')";
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_num_rows($result);
-    $dados = mysqli_fetch_array($result);
-    $id = $dados['ID_Professor'];
+    $Login_query = "SELECT * FROM Professores WHERE Email = '".$Email."' AND Senha = md5('".$Senha."')";
+    $Login_result = mysqli_query($conn, $Login_query);
+    $Login_row = mysqli_num_rows($Login_result);
+    $Login_dados = mysqli_fetch_array($Login_result);
 
-    if($row == 1){
+    if($Login_row == 1){
       $_SESSION['usuario'] = $dados['Nome'];
-      $_SESSION['id'] = $id;
+      $_SESSION['id'] = $dados['ID_Professor'];
       $_SESSION['senha'] = $senha;
       header('Location: ../../painel/painel.php');
       exit();
