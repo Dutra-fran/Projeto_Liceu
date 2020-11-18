@@ -10,121 +10,121 @@
             include_once('./verifica_login.php');
             include_once('../../../conexao.php');
             $i = 0;
-            if(!isset($_SESSION['professor'])){
-              $_SESSION['mensagem_admin'] = "Só professores têm acesso à esta página.";
+            if(!isset($_SESSION['acesso'])){
+              $_SESSION['mensagem'] = "Só professores têm acesso à esta página.";
               header('Location: ../../painel.php');
               exit();
             }
 
-            $busca = "SELECT * FROM Exatas WHERE ID_Professor = '".$_SESSION['id']."'";
-            $resultado = mysqli_query($conn, $busca);
-            $row = mysqli_num_rows($resultado);
-            $dados = mysqli_fetch_array($resultado);
+            $Exatas_query = "SELECT * FROM Exatas WHERE ID_Professor = '".$_SESSION['id']."'";
+            $Exatas_result = mysqli_query($conn, $Exatas_query);
+            $Exatas_row = mysqli_num_rows($Exatas_result);
+            $dados_Exatas = mysqli_fetch_array($Exatas_result);
 
-            $busca1 = "SELECT * FROM Humanas WHERE ID_Professor = '".$_SESSION['id']."'";
-            $resultado1 = mysqli_query($conn, $busca1);
-            $row1 = mysqli_num_rows($resultado1);
-            $dados1 = mysqli_fetch_array($resultado1);
+            $Humanas_query = "SELECT * FROM Humanas WHERE ID_Professor = '".$_SESSION['id']."'";
+            $Humanas_result = mysqli_query($conn, $Humanas_query);
+            $Humanas_row = mysqli_num_rows($Humanas_result);
+            $dados_Humanas = mysqli_fetch_array($Humanas_result);
 
-            if($row == 1){
+            if($Exatas_row == 1){
 
-              $busca4 = "SELECT * FROM Salas_Prof WHERE ID_Professor = '".$_SESSION['id']."'";
-              $resultado4 = mysqli_query($conn, $busca4);
+              $Salas_Prof_query = "SELECT * FROM Salas_Prof WHERE ID_Professor = '".$_SESSION['id']."'";
+              $Salas_Prof_result = mysqli_query($conn, $Salas_Prof_query);
 
-              while($dadinhos = mysqli_fetch_array($resultado4)){
+              while($dados_Salas_Prof = mysqli_fetch_array($Salas_Prof_result)){
 
-                $busca2 = "SELECT * FROM ".$dados['Disciplina']." WHERE ID_Sala = '".$dadinhos['ID_Sala']."'";
-                $resultado2 = mysqli_query($conn, $busca2);
-                $row2 = mysqli_num_rows($resultado2);
+                $Prova_query = "SELECT * FROM ".$dados_Exatas['Disciplina']." WHERE ID_Sala = '".$dados_Sala_Prof['ID_Sala']."'";
+                $Prova_result = mysqli_query($conn, $Prova_query);
+                $Prova_row = mysqli_num_rows($Prova_result);
 
-                if(!$resultado2){
+                if(!$Prova_result){
                   $_SESSION['mensagem_professor'] = "Erro ao visualizar a prova no banco de dados. Por favor, tente novamente.";
                   header('Location: ../prova.php');
                   exit();
                 }
 
-                while($dado = mysqli_fetch_array($resultado2)){
+                while($dados_Prova = mysqli_fetch_array($Prova_result)){
                   $i++;
 
                   if($i == 1){
-                    $busca3 = "SELECT * FROM Salas WHERE ID_Sala = '".$dado['ID_Sala']."'";
-                    $resultado3 = mysqli_query($conn, $busca3);
-                    $dadinho = mysqli_fetch_array($resultado3);
+                    $Nome_Sala_query = "SELECT * FROM Salas WHERE ID_Sala = '".$dados_Prova['ID_Sala']."'";
+                    $Nome_Sala_result = mysqli_query($conn, $Nome_Sala_query);
+                    $Nome_Sala = mysqli_fetch_array($Nome_Sala_result);
 
-                    echo "<h2>Prova da sala ".$dadinho['Sala']."</h2>";
-                  }
-
-                  echo "<br><br>$i. ".$dado['Questao'];
-                  if($dado['item1'] !== ""){
-                    echo "<br>A) ". $dado['item1'];
-                  }
-                  if($dado['item2'] !== ""){
-                    echo "<br>B) ". $dado['item2'];
-                  }
-                  if($dado['item3'] !== ""){
-                    echo "<br>C) ". $dado['item3'];
-                  }
-                  if($dado['item4'] !== ""){
-                    echo "<br>D) ". $dado['item4'];
-                  }
-                  if($dado['item5'] !== ""){
-                    echo "<br>E) ". $dado['item5'];
+                    echo "<h2>Prova da sala ".$Nome_Sala['Sala']."</h2>";
                   }
 
-                  if($i == $row2){
-                    echo "<br><br><a href='processa.php?ID_Sala=".$dado['ID_Sala']."'>Apagar prova</a>";
+                  echo "<br><br>$i. ".$dados_Prova['Questao'];
+                  if($dados_Prova['item1'] !== ""){
+                    echo "<br>A) ". $dados_Prova['item1'];
+                  }
+                  if($dados_Prova['item2'] !== ""){
+                    echo "<br>B) ". $dados_Prova['item2'];
+                  }
+                  if($dados_Prova['item3'] !== ""){
+                    echo "<br>C) ". $dados_Prova['item3'];
+                  }
+                  if($dados_Prova['item4'] !== ""){
+                    echo "<br>D) ". $dados_Prova['item4'];
+                  }
+                  if($dados_Prova['item5'] !== ""){
+                    echo "<br>E) ". $dados_Prova['item5'];
+                  }
+
+                  if($i == $Prova_row){
+                    echo "<br><br><a href='processa.php?ID_Sala=".$dados_Prova['ID_Sala']."'>Apagar prova</a>";
                     $i = 0;
                   }
                 }
               }
             }
 
-            if($row1 == 1){
+            if($Humanas_row == 1){
 
-              $busca4 = "SELECT * FROM Salas_Prof WHERE ID_Professor = '".$_SESSION['id']."'";
-              $resultado4 = mysqli_query($conn, $busca4);
+              $Salas_Prof_query = "SELECT * FROM Salas_Prof WHERE ID_Professor = '".$_SESSION['id']."'";
+              $Salas_Prof_result = mysqli_query($conn, $Salas_Prof_query);
 
-              while($dadinhos = mysqli_fetch_array($resultado4)){
+              while($dados_Salas_Prof = mysqli_fetch_array($Salas_Prof_result)){
 
-                $busca2 = "SELECT * FROM ".$dados['Disciplina']." WHERE ID_Sala = '".$dadinhos['ID_Sala']."'";
-                $resultado2 = mysqli_query($conn, $busca2);
-                $row2 = mysqli_num_rows($resultado2);
+                $Prova_query = "SELECT * FROM ".$dados_Humanas['Disciplina']." WHERE ID_Sala = '".$dados_Salas_Prof['ID_Sala']."'";
+                $Prova_result = mysqli_query($conn, $Prova_query);
+                $Prova_row = mysqli_num_rows($Prova_result);
 
-                if(!$resultado2){
+                if(!$Prova_result){
                   $_SESSION['mensagem_professor'] = "Erro ao visualizar a prova no banco de dados. Por favor, tente novamente.";
                   header('Location: ../prova.php');
                   exit();
                 }      
 
-                while($dado = mysqli_fetch_array($resultado2)){
+                while($dados_Prova = mysqli_fetch_array($Prova_result)){
                   $i++;
 
                   if($i == 1){
-                    $busca3 = "SELECT * FROM Salas WHERE ID_Sala = '".$dado['ID_Sala']."'";
-                    $resultado3 = mysqli_query($conn, $busca3);
-                    $dadinho = mysqli_fetch_array($resultado3);
+                    $Nome_Sala_query = "SELECT * FROM Salas WHERE ID_Sala = '".$dados_Prova['ID_Sala']."'";
+                    $Nome_Sala_result = mysqli_query($conn, $Nome_Sala_query);
+                    $Nome_Sala = mysqli_fetch_array($Nome_Sala_result);
 
-                    echo "<h2>Prova da sala ".$dadinho['Sala']."</h2>";
+                    echo "<h2>Prova da sala ".$Nome_Sala['Sala']."</h2>";
                   }
 
-                  echo "<br><br>$i. ".$dado['Questao'];
-                  if($dado['item1'] !== ""){
-                    echo "<br>A) ". $dado['item1'];
+                  echo "<br><br>$i. ".$dados_Prova['Questao'];
+                  if($dados_Prova['item1'] !== ""){
+                    echo "<br>A) ". $dados_Prova['item1'];
                   }
-                  if($dado['item2'] !== ""){
-                    echo "<br>B) ". $dado['item2'];
+                  if($dados_Prova['item2'] !== ""){
+                    echo "<br>B) ". $dados_Prova['item2'];
                   }
-                  if($dado['item3'] !== ""){
-                    echo "<br>C) ". $dado['item3'];
+                  if($dados_Prova['item3'] !== ""){
+                    echo "<br>C) ". $dados_Prova['item3'];
                   }
-                  if($dado['item4'] !== ""){
-                    echo "<br>D) ". $dado['item4'];
+                  if($dados_Prova['item4'] !== ""){
+                    echo "<br>D) ". $dados_Prova['item4'];
                   }
-                  if($dado['item5'] !== ""){
-                    echo "<br>E) ". $dado['item5'];
+                  if($dados_Prova['item5'] !== ""){
+                    echo "<br>E) ". $dados_Prova['item5'];
                   }
-                  if($i == $row2){
-                    echo "<br><br><a href='processa.php?ID_Sala=".$dado['ID_Sala']."'>Apagar prova</a>";
+                  if($i == $Prova_row){
+                    echo "<br><br><a href='processa.php?ID_Sala=".$dados_Prova['ID_Sala']."'>Apagar prova</a>";
                     $i = 0;
                   }
                 }
