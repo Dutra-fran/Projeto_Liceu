@@ -28,11 +28,11 @@
             include_once('../../../conexao.php');
             $Comentario_query = "SELECT Cadastro.Nome AS Nome, FeedBack.Comentario AS Comentario, FeedBack.Data AS Data, FeedBack.ID_Comentario AS ID FROM Cadastro INNER JOIN FeedBack ON Cadastro.ID = FeedBack.ID_Cadastro ORDER BY ID DESC"; 
             $Comentario_result = mysqli_query($conn, $Comentario_query);
-            $Comentario_row = mysqli_num_rows($result);
+            $Comentario_row = mysqli_num_rows($Comentario_result);
             if($Comentario_row == 0){
               echo "Nenhum comentário!";
             } else { 
-              while($dados_Comentarios = mysqli_fetch_array($Comentarios_result)){
+              while($dados_Comentarios = mysqli_fetch_array($Comentario_result)){
                 if($dados_Comentarios['Nome'] == $_SESSION['usuario']){
                   echo "<p>".$dados_Comentarios['Nome']." | ".$dados_Comentarios['Data']."<br>Comentário: ".$dados_Comentarios['Comentario']."<br>"
                   ."<a href='./comentario/deletar_comment.php?ID=".$comment['ID']."'>Apagar</a></p>";
