@@ -23,7 +23,6 @@
         <br><br><br><br>
         <?php
             session_start();
-            include_once('../../conexao.php');
             
             if(isset($_SESSION['mensagem_login'])){
               echo "<h2>".$_SESSION['mensagem_login']."</h2>";
