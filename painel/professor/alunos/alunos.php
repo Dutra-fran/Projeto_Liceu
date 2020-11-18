@@ -10,7 +10,7 @@
             include_once('./verifica_login.php');
             include_once('../../../conexao.php');
             
-            $Alunos_query = "SELECT * FROM Cadastro GROUP BY ID_Sala";
+            $Alunos_query = "SELECT * FROM Cadastro ORDER BY ID_Sala";
             $Alunos_result = mysqli_query($conn, $Alunos_query);
             echo "<table border='1'>";
             
