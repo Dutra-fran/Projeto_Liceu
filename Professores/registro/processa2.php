@@ -42,7 +42,7 @@
     $insercao_dados = mysqli_query($conn, $insercao);
     $Query_prof = "SELECT ID_Professor FROM Professores WHERE Email = '".$Email."' AND Senha = md5('".$Senha."')";
     $Prof_result = mysqli_query($conn, $Query_prof);
-    $Dados_prof = mysqli_fetch_array($Dados_prof);
+    $Dados_prof = mysqli_fetch_array($Prof_result);
     $id = $Dados_prof['ID_Professor'];
 
     if($Materia == 'exatas'){
